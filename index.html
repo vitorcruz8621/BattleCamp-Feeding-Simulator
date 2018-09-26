@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+      <title>Feeding Guide</title>
+</head>
+<body>
+
+      
+      <table>
+            <tr>
+                  <td>Valor =</td>
+                  <!-- <td><div id="resposta"></div></td> -->
+                  <td id="resposta"></td>
+            </tr>
+      </table>
+
+      <form id="formulario" action="#" method="GET">
+            <label for="tipo_monstro">Tipo de monstro</label>
+            <br>
+            <!--<input type="text" id="tipo_monstro" id="tipo_monstro" value="tipo_monstro">-->
+            <select name="tipo_monstro" id="tipo_monstro">
+                  <!--<option value="uncommon">Incomum</option>
+                  <option value="special">Especial</option>
+                  <option value="rare">Raro</option>-->
+                  <option value="super">Super</option>
+                  <option value="ultra">Ultra</option>
+                  <option value="epic">Épico</option>
+            </select>
+            <p/>
+
+            <label for="evolucao_monstro">Evolucao de monstro</label>
+            <br>
+            <select name="evolucao_monstro" id="evolucao_monstro">
+                  <option value="unevolved">Não Evoluido</option>
+                  <option value="evo">Primeira Evolução</option>
+                  <option value="sevo">Segunda Evolução</option>
+            </select>
+            <p/>
+
+            <label for="numero_monstro_feeder">Númedo de monstros para sacrificar</label>
+            <br>
+            <input type="range" name="numero_monstro_feeder" id="numero_monstro_feeder" min="1" max="5" step="1" value="1">
+            <p/>
+
+            <label for="tipo_especial">tipo_especial</label>
+            <br>
+            <select name="tipo_especial" id="tipo_especial">
+                  <option value="2">Potente(2x)</option>
+                  <option value="3">Carregado(3x)</option>
+                  <option value="5">Energizado(5x)</option>
+            </select>
+            <p/>
+
+            <label for="elemento_especial">Elemento do Especial coincide com o elemento do monstro que será nutrido?</label>
+            <br>
+            <select name="elemento_especial" id="elemento_especial">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+            </select>
+            <p/>
+
+            <label for="feeding_booster">Está usando o aditivo de nutrição?</label>
+            <br>
+            <select name="feeding_booster" id="feeding_booster">
+                  <option value="true">Sim</option>
+                  <option value="false">Não</option>
+            </select>
+            <p/>            
+
+            <button id="botao">Botão</button>
+      </form>
+      
+      <script src="app.js"></script>      
+</body>
+</html>
