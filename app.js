@@ -13,64 +13,61 @@ function readFormInformation() {
     
     let tipoMonstro = tipo_monstro.value;
     let evolucao = evolucao_monstro.value;
-    let tipoEspecial = tipo_especial.value;
-    let tipoEspecialResp;
-    let elementoEspecial = (elemento_especial.value == "true");
-    let elementoEspecialResp = elementoEspecial ? "do mesmo elemento" : "de elementos distintos";
-    let feedingBooster = (feeding_booster.value == "true");
-    let feedingBoosterResp = feedingBooster ? " usando " : " sem usar ";
     
-    switch(tipoEspecial) {
-        case "2":
-            tipoEspecialResp = "potente(s)";
-            break
-        case "3":
-            tipoEspecialResp = "carregado(s)";
-            break
-        case "5":
-            tipoEspecialResp = "energizado(s)";
-            break;
-        default:
-            tipoEspecialResp = "ERRO";
-            break;
+    let especiais = {
+        "especiaisPotentes" : especial_potente.value * 64000 * 2,
+        "especiaisCarregados" : especial_carregado.value  * 64000 * 3,
+        "especiaisEnergizados" : especial_energizado.value * 64000 * 5
+    }
+    
+    let especiaisElemento = especial_elemento.value;
+    let feedingBooster = feeding_booster.value;
+    valueOfSpecials(especiais)
+
+    console.log(especiais)
+
+    let necessaryExperience = returnNecessaryExperience();
+    let necessaryFeeding = returnNecessaryFeeding(necessaryExperience);
+
+    if(necessaryFeeding <= 0 ){
+        //alert("Monstro maximizado com excesso de " + (-1 * necessaryFeeding));
+        console.log("Monstro maximizado com excesso de " + (-1 * necessaryFeeding));
+    } else {
+        //alert("Monstro não foi maximizado ainda. Faltou " + necessaryFeeding);
+        console.log("Monstro não foi maximizado ainda. Faltou " + necessaryFeeding);
     }
 
-    let jsonResp = returnNecessaryFeeding();
+
+    function returnNecessaryFeeding(necessaryExperience){
+        for (let especial in especiais){
+            necessaryExperience -= especiais[especial]
+        }
+        return necessaryExperience;
+    }
     
-    alert("Para maximizar um montro do tipo " + tipoMonstro + " " + evolucao + ", será necessário " + 
-    jsonResp.especiais + " especial(is) " + tipoEspecialResp + " " + elementoEspecialResp + feedingBoosterResp + 
-    " um aditivo de nutrição.\n" + "Houve excesso de " + jsonResp.xpExcedido + " Xp");
-
-    function returnNecessaryFeeding(){
+    function returnNecessaryExperience(){
         if( bcMobs.hasOwnProperty(tipoMonstro) ){
-            let copyBcMObs = bcMobs[tipoMonstro];
+            let auxBcMob = bcMobs[tipoMonstro];
 
-            if(copyBcMObs.hasOwnProperty(evolucao)){
-                copyBcMObs = copyBcMObs[evolucao];
-
-                let i = copyBcMObs;
-                
-                let specialValueXp = 40 * 800 * tipoEspecial, cont = 0;
-                if(elementoEspecial == true)
-                    specialValueXp *= 1.3;
-                if( feedingBooster == true)
-                    specialValueXp *= 2;
-                
-                console.log("Expeciencia do especial = " + specialValueXp)
-                for (; i > 0; i -= specialValueXp, cont++){
-                    console.log("Expeciencia restante = " + i )
-                    console.log("Especiais usados = " + (cont+1))
-                }
-                console.log(`${i}\n--------------------------------`)
-
-
-                //returnNecessaryFeedingNeeded = cont;
-                return {
-                    "especiais" : cont,
-                    "xpExcedido" : i*(-1)};
-                
+            if(auxBcMob.hasOwnProperty(evolucao)){                
+                return auxBcMob[evolucao]                
             } else return 0;
         } else return 0;
+    }
+
+    function valueOfSpecials(especiais){
+        //if(feedingBooster != false && especiaisElemento != false) {
+            let increase = 1;
+
+            if(feedingBooster == true)
+                increase++;
+            if(especiaisElemento == true)
+                increase *= 1.3
+            
+            for (let especial in especiais){
+                especiais[especial] *= increase;
+            }
+        //}        
     }
 }
 

@@ -31,18 +31,33 @@
             <input type="range" name="numero_monstro_feeder" id="numero_monstro_feeder" min="1" max="5" step="1" value="1">
             <p/>-->
 
-            <label for="tipo_especial">tipo_especial</label>
+            <label for="especial_potente">Especiais Potentes</label>
+            <br>
+            <input type="range" name="especial_potente" id="especial_potente" min="0" max="10" value="0">
+            <p/>
+
+            <label for="especial_carregado">Especiais Carregados</label>
+            <br>
+            <input type="range" name="especial_carregado" id="especial_carregado" min="0" max="10" value="0">
+            <p/>
+
+            <label for="especial_energizado">Especiais Energizados</label>
+            <br>
+            <input type="range" name="especial_energizado" id="especial_energizado" min="0" max="10" value="0">
+            <p/>
+
+            <!--<label for="tipo_especial">tipo_especial</label>
             <br>
             <select name="tipo_especial" id="tipo_especial">
                   <option value="2">Potente(2x)</option>
                   <option value="3">Carregado(3x)</option>
                   <option value="5">Energizado(5x)</option>
             </select>
-            <p/>
+            <p/>-->
 
-            <label for="elemento_especial">Elemento do Especial coincide com o elemento do monstro que será nutrido?</label>
+            <label for="especial_elemento">Monstro a ser nutrido e especiais tem mesmo elemento?</label>
             <br>
-            <select name="elemento_especial" id="elemento_especial">
+            <select name="especial_elemento" id="especial_elemento">
                   <option value="true">Sim</option>
                   <option value="false">Não</option>
             </select>
